@@ -1,12 +1,15 @@
 import express, { application } from "express";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 import pg from "pg";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const pool = new pg.Pool({
-    database: "cars",
+    connectionString: process.env.DATABASE_URL
 })
 
 app.use(express.static('static'))
