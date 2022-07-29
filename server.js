@@ -9,7 +9,8 @@ const app = express();
 const PORT = process.env.PORT;
 
 const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
 })
 
 app.use(express.static('static'))
