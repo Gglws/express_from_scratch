@@ -9,8 +9,14 @@ const app = express();
 const PORT = process.env.PORT;
 
 const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+  connectionString: process.env.DATABASE_URL,
+  
+  ...(process.env.NODE_ENV === 'production' ? {
+    ssl:{
+      rejectUnauthorized: false,
+    }
+  }
+  : {}),
 })
 
 app.use(express.static('static'))
